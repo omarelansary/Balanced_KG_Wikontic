@@ -5,7 +5,7 @@ from pyvis.network import Network
 import tempfile
 import os
 from dotenv import load_dotenv, find_dotenv
-from utils.structured_inference_with_db import extract_triplets
+from utils.structured_inference_with_db import StructuredInferenceWithDB
 from utils.structured_dynamic_index_utils_with_db import Aligner
 from utils.openai_utils import LLMTripletExtractor
 from pymongo import MongoClient
@@ -33,18 +33,22 @@ st.set_page_config(
     layout="wide"
 )
 
+WIKIDATA_ONTOLOGY_DB_NAME = "wikidata_ontology"
+TRIPLETS_DB_NAME = "demo"
 # --- Mongo Setup ---
 _ = load_dotenv(find_dotenv())
 mongo_client = MongoClient(os.getenv("MONGO_URI"))
-db = mongo_client.get_database("wikidata_ontology")
+ontology_db = mongo_client.get_database(WIKIDATA_ONTOLOGY_DB_NAME)
+triplets_db = mongo_client.get_database(TRIPLETS_DB_NAME)
 
 # --- Extractor Setup ---
-# extractor = LLMTripletExtractor(model='gpt-4.1-mini')
-aligner = Aligner(db)
+# extractor = LLMTripletExtractor(model=selected_model)
+aligner = Aligner(ontology_db=ontology_db, triplets_db=triplets_db)
+# inference_with_db = StructuredInferenceWithDB(extractor=extractor, aligner=aligner, triplets_db=triplets_db)
 
 
 def fetch_related_triplets(entities):
-    collection = db.get_collection('triplets')
+    collection = triplets_db.get_collection('triplets')
     query = {"$or": [
                 {"subject": {"$in": entities}},
                 {"object": {"$in": entities}}
@@ -129,20 +133,30 @@ if trigger:
         st.warning("Please select a model for KG extraction.")
     else:
         extractor = LLMTripletExtractor(model=selected_model)
-        initial_triplets, refined_triplets, filtered_triplets = extract_triplets(input_text, sample_id=user_id, aligner=aligner, extractor=extractor)
+        inference_with_db = StructuredInferenceWithDB(extractor=extractor, aligner=aligner, triplets_db=triplets_db)
+        initial_triplets, final_triplets, filtered_triplets, ontology_filtered_triplets = inference_with_db.extract_triplets_with_ontology_filtering(input_text, sample_id=user_id)
+        if len(initial_triplets) > 0:
+            aligner.add_initial_triplets(initial_triplets, sample_id=user_id)
+        if len(final_triplets) > 0:
+            aligner.add_triplets(final_triplets, sample_id=user_id)
+        if len(filtered_triplets) > 0:
+            aligner.add_filtered_triplets(filtered_triplets, sample_id=user_id)
+        if len(ontology_filtered_triplets) > 0:
+            aligner.add_ontology_filtered_triplets(ontology_filtered_triplets, sample_id=user_id)
         print("Initial triplets: ", initial_triplets)
         print()
-        print("Refined triplets: ", refined_triplets)
+        print("Refined triplets: ", final_triplets)
         print()
         print("filtered_triplets: ", filtered_triplets)
+        print()
+        print("ontology_filtered_triplets: ", ontology_filtered_triplets)
         # insert_triplets_to_neo4j(refined_triplets)
-        new_entities = {t["subject"] for t in refined_triplets} | {t["object"] for t in refined_triplets}
+        new_entities = {t["subject"] for t in final_triplets} | {t["object"] for t in final_triplets}
         subgraph = fetch_related_triplets(list(new_entities))
         # st.session_state.kg = nx.DiGraph()
         # for s, r, o in subgraph:
             # st.session_state.kg.add_edge(s, o, label=r, highlight=s in new_entities or o in new_entities)
-        st.success(f"✅ Extracted {len(refined_triplets)} triplets and visualized {len(subgraph)} related ones.")
-        
+        st.success(f"✅ Extracted {len(final_triplets)} triplets and visualized {len(subgraph)} related ones.")
 
         col1, col2 = st.columns(2)
         
@@ -150,7 +164,7 @@ if trigger:
             # initial_kg_container = st.empty()
             # with initial_kg_container:
                 st.subheader("Extracted Triplets")
-                visualize_initial_knowledge_graph(initial_triplets['triplets'])
+                visualize_initial_knowledge_graph(initial_triplets)
 
         with col2:
             # expanded_kg_container = st.empty()

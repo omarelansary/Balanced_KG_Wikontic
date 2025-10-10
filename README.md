@@ -1,31 +1,80 @@
 ![Wikontic logo](/media/wikontic.png)
 
-# Wikontic - building ontology-aware, Wikidata-aligned knowledge graphs from raw text with LLMs
+# Wikontic
 
-## Overview 
+**Build ontology-aware, Wikidata-aligned knowledge graphs from raw text using LLMs**
 
-Knowledge Graphs (KGs) offer accurate structured knowledge representation, enabling verifiable fact grounding and providing large language models (LLMs) with the latest real-world information. However, constructing high-quality KGs from open-domain text remains challenging due to redundancy, inconsistency, and lack of grounding in formal ontologies.
+---
 
-Wikontic, a tool with a multi-stage pipeline for building ontology-aligned KGs from unstructured text using LLMs and Wikidata. Wikontic extracts candidate triples from raw text, then refines them through ontology-based typing, schema validation, and entity deduplication, producing compact, semantically coherent graphs. 
+## 🚀 Overview
 
-## Repository structure
+Knowledge Graphs (KGs) provide structured, verifiable representations of knowledge, enabling fact grounding and empowering large language models (LLMs) with up-to-date, real-world information. However, creating high-quality KGs from open-domain text is challenging due to issues like redundancy, inconsistency, and lack of alignment with formal ontologies.
 
-```preprocessing/constraint-preprocessing.ipynb``` - a notebook with a code for downloading constraints rules from Wikidata
+**Wikontic** is a multi-stage pipeline for constructing ontology-aligned KGs from unstructured text using LLMs and Wikidata. It extracts candidate triples from raw text, then refines them through ontology-based typing, schema validation, and entity deduplication—resulting in compact, semantically coherent graphs.
 
-```utils/``` - contains utilities for LLM-based triplet extraction and triplet alignment with Wikidata ontology rules
+---
 
-```utils/ontology_mappings``` - contains json files with ontology mappings from Wikidata
+## 📁 Repository Structure
 
-```utils/structured_dynamic_index_utils_with_db.py ``` - contains Aligner class for ontology aligner
+- `preprocessing/constraint-preprocessing.ipynb`  
+  Jupyter notebook for collecting constraint rules from Wikidata.
 
-```utils/structured_dynamic_index_utils_with_db.py ``` - contains LLMTripletExtractor class for triplet extraction 
+- `utils/`  
+  Utilities for LLM-based triple extraction and alignment with Wikidata ontology rules.
 
-```pages/``` and ```Wikontic.py``` - contains a code for a web-service for Knowledge Graph extraction and visualization
+
+- `utils/openai_utils.py`  
+  `LLMTripletExtractor` class for LLM-based triple extraction.
 
 
-## How to launch
+### To use ontology:
 
-```
-./setup_db.sh
-streamlit run Wikontic.py 
-```
+- `utils/ontology_mappings/`  
+  JSON files containing ontology mappings from Wikidata.
+
+- `utils/structured_inference_with_db.py`  
+  - `StructuredInferenceWithDB` class: triple extraction and qa functions
+
+- `utils/structured_aligner.py`
+  -  `Aligner` class: ontology alignment and entity name refinement
+
+
+### Not to use ontology:
+- `utils/inference_with_db.py`
+  - `InferenceWithDB` class: triple extraction and qa functions
+
+- `utils/dynamic_aligner.py`
+  -  `Aligner` class: entity and relation name refinement
+
+### Evaluation:
+- `inference_and_eval/`
+	- Scripts for building KGs for MuSiQue and HotPot datasets and evaluation of QA performance
+- `analysis/`
+  - Notebooks with downstream analysis of the resulted KG
+
+### Use Wikontic as a service:
+
+- `pages/` and `Wikontic.py`  
+  Code for the web service for knowledge graph extraction and visualization.
+
+- `Dockerfile`  
+  For building a containerized web service.
+
+
+---
+
+## 🏁 Getting Started
+
+1. **Set up the ontology and KG databases:**
+   ```
+   ./setup_db.sh
+   ```
+
+2. **Launch the web service:**
+   ```
+   streamlit run Wikontic.py
+   ```
+
+---
+
+Enjoy building knowledge graphs with Wikontic!

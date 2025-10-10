@@ -6,9 +6,6 @@ import tempfile
 import os
 from dotenv import load_dotenv, find_dotenv
 # from neo4j import GraphDatabase
-from utils.structured_inference_with_db import extract_triplets
-from utils.structured_dynamic_index_utils_with_db import Aligner
-from utils.openai_utils import LLMTripletExtractor
 from pymongo import MongoClient
 import uuid
 import logging
@@ -37,15 +34,15 @@ st.set_page_config(
 # --- Mongo Setup ---
 _ = load_dotenv(find_dotenv())
 mongo_client = MongoClient(os.getenv("MONGO_URI"))
-db = mongo_client.get_database("wikidata_ontology")
+triplets_db = mongo_client.get_database("demo")
 
 # --- Extractor Setup ---
 # extractor = LLMTripletExtractor(model='gpt-4.1-mini')
-aligner = Aligner(db)
+# aligner = Aligner(triplets_db)
 
 
 def fetch_triplets():
-    collection = db.get_collection('triplets')
+    collection = triplets_db.get_collection('triplets')
     query = {
             "sample_id": user_id
         }
@@ -105,8 +102,17 @@ with st.expander("🗑 Drop Knowledge Graph", expanded=True):
     confirm = st.checkbox("Confirm Drop")
     drop_button = st.button("Drop")
     if confirm and drop_button:
-        collection = db.get_collection('triplets')
+        collection = triplets_db.get_collection('triplets')
         collection.delete_many({"sample_id": user_id})
+        collection = triplets_db.get_collection('filtered_triplets')
+        collection.delete_many({"sample_id": user_id})
+        collection = triplets_db.get_collection('ontology_filtered_triplets')
+        collection.delete_many({"sample_id": user_id})
+        collection = triplets_db.get_collection('initial_triplets')
+        collection.delete_many({"sample_id": user_id})
+        collection = triplets_db.get_collection('entity_aliases')
+        collection.delete_many({"sample_id": user_id})
+
         st.success("Knowledge Graph dropped.")
         logger.info(f"Knowledge Graph dropped for user {user_id}")
         st.stop()

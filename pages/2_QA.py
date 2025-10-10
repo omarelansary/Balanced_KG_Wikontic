@@ -8,7 +8,7 @@ from dotenv import load_dotenv, find_dotenv
 from pymongo import MongoClient
 from utils.structured_dynamic_index_utils_with_db import Aligner
 from utils.openai_utils import LLMTripletExtractor
-from utils.structured_inference_with_db import identify_relevant_entities, answer_question
+from utils.structured_inference_with_db import StructuredInferenceWithDB
 import uuid
 import logging
 import sys
@@ -30,9 +30,12 @@ logger.info(f"User ID: {user_id}")
 
 _ = load_dotenv(find_dotenv())
 
+WIKIDATA_ONTOLOGY_DB_NAME = "wikidata_ontology"
+TRIPLETS_DB_NAME = "demo"
 mongo_client = MongoClient(os.getenv("MONGO_URI"))
-db = mongo_client.get_database("wikidata_ontology")
-aligner = Aligner(db)
+triplets_db = mongo_client.get_database(TRIPLETS_DB_NAME)
+ontology_db = mongo_client.get_database(WIKIDATA_ONTOLOGY_DB_NAME)
+aligner = Aligner(ontology_db=ontology_db, triplets_db=triplets_db)
 
 st.set_page_config(
     page_title="Wikontic",
@@ -62,10 +65,10 @@ def visualize_knowledge_graph(triplets, highlight_entities=None):
         st.components.v1.html(f.read(), height=600, scrolling=True)
     os.remove(html_path)
 
-def query_kg(question_text):
-    identified_entities = identify_relevant_entities(question_text, extractor=extractor, aligner=aligner, sample_id=user_id)
+def query_kg(inferer, question_text):
+    identified_entities = inferer.identify_relevant_entities_from_question(question_text, sample_id=user_id)
     identified_entities_names = [e['entity'] for e in identified_entities]
-    supporting_triplets, ans = answer_question(question_text, identified_entities, extractor=extractor, aligner=aligner, db=db, sample_id=user_id)
+    supporting_triplets, ans = inferer.answer_question(question_text, identified_entities, sample_id=user_id)
     return identified_entities_names, supporting_triplets, ans
 
 with open("media/wikontic.png", "rb") as f:
@@ -97,9 +100,10 @@ if trigger:
         st.warning("Please select a model.")
     else:
         extractor = LLMTripletExtractor(model=selected_model)
+        inferer = StructuredInferenceWithDB(extractor=extractor, aligner=aligner, triplets_db=triplets_db)
         
         st.markdown(f"#### Results for: *{question}*")
-        identified_entities_names, supporting_triplets, ans = query_kg(question)
+        identified_entities_names, supporting_triplets, ans = query_kg(inferer, question)
 
         st.session_state.kg = nx.DiGraph()
         for t in supporting_triplets:
