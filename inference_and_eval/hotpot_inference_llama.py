@@ -31,7 +31,7 @@ def get_args():
     parser.add_argument("--ontology_db_name", type=str, default="wikidata_ontology")
     parser.add_argument("--triplets_db_name", type=str, default="triplets_db")
     parser.add_argument("--model_name", type=str, default="gpt-4o-mini")
-    parser.add_argument("--dataset_path", type=str, default="datasets/hotpotqa200.json")
+    parser.add_argument("--dataset_path", type=str, default="datasets/hotpotqa.json")
     parser.add_argument("--num_samples", type=int, default=50)
     parser.add_argument("--structured_inference", action="store_true", help="Enable structured inference")
     parser.add_argument("--no_structured_inference", action="store_false", dest="structured_inference", help="Disable structured inference")
@@ -75,9 +75,8 @@ if __name__ == "__main__":
     for elem in ds:
         id2sample[elem['_id']] = elem
 
-    sampled_ids = list(id2sample.keys())[50:num_samples]
+    sampled_ids = list(id2sample.keys())[:num_samples]
 
-    
     for i, sample_id in tqdm(enumerate(sampled_ids), total=len(sampled_ids)):
 
         sample = id2sample[sample_id]
