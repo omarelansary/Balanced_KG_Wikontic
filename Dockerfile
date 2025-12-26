@@ -17,7 +17,7 @@ COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY utils/openai_utils.py ./utils/
-COPY utils/structured_dynamic_index_utils_with_db.py ./utils/
+COPY utils/structured_aligner.py ./utils/
 COPY utils/structured_inference_with_db.py ./utils/
 COPY utils/prompts/ ./utils/prompts/
 
