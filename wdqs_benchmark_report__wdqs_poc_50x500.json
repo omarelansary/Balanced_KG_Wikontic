@@ -1,0 +1,454 @@
+{
+  "sample_id": "wdqs_poc_50x500",
+  "mongo_uri": "mongodb://localhost:63819/?directConnection=true",
+  "ontology_db": "wikidata_ontology",
+  "triplets_db": "triplets_db",
+  "n_relations": 50,
+  "triples_per_relation": 500,
+  "seed": 13,
+  "pids": [
+    "P2098",
+    "P4000",
+    "P277",
+    "P530",
+    "P6697",
+    "P485",
+    "P301",
+    "P86",
+    "P2955",
+    "P9086",
+    "P1283",
+    "P577",
+    "P2105",
+    "P5514",
+    "P40",
+    "P1357",
+    "P3497",
+    "P6639",
+    "P4036",
+    "P2279",
+    "P3028",
+    "P5804",
+    "P3999",
+    "P1995",
+    "P816",
+    "P550",
+    "P6977",
+    "P10308",
+    "P11260",
+    "P5425",
+    "P922",
+    "P5426",
+    "P13171",
+    "P6272",
+    "P726",
+    "P13574",
+    "P2286",
+    "P2989",
+    "P10627",
+    "P118",
+    "P2831",
+    "P2869",
+    "P9353",
+    "P169",
+    "P570",
+    "P1037",
+    "P184",
+    "P8738",
+    "P822",
+    "P1912"
+  ],
+  "per_pid": [
+    {
+      "pid": "P2098",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 1.301,
+      "inserted": 500
+    },
+    {
+      "pid": "P4000",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.818,
+      "inserted": 500
+    },
+    {
+      "pid": "P277",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.685,
+      "inserted": 500
+    },
+    {
+      "pid": "P530",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.607,
+      "inserted": 500
+    },
+    {
+      "pid": "P6697",
+      "returned_bindings": 0,
+      "valid_qid_edges": 0,
+      "seconds": 0.443,
+      "inserted": 0
+    },
+    {
+      "pid": "P485",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.654,
+      "inserted": 500
+    },
+    {
+      "pid": "P301",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.721,
+      "inserted": 500
+    },
+    {
+      "pid": "P86",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.685,
+      "inserted": 500
+    },
+    {
+      "pid": "P2955",
+      "returned_bindings": 0,
+      "valid_qid_edges": 0,
+      "seconds": 0.697,
+      "inserted": 0
+    },
+    {
+      "pid": "P9086",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.414,
+      "inserted": 500
+    },
+    {
+      "pid": "P1283",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.621,
+      "inserted": 500
+    },
+    {
+      "pid": "P2105",
+      "returned_bindings": 0,
+      "valid_qid_edges": 0,
+      "seconds": 0.354,
+      "inserted": 0
+    },
+    {
+      "pid": "P5514",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 2.391,
+      "inserted": 500
+    },
+    {
+      "pid": "P40",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.569,
+      "inserted": 500
+    },
+    {
+      "pid": "P1357",
+      "returned_bindings": 0,
+      "valid_qid_edges": 0,
+      "seconds": 0.324,
+      "inserted": 0
+    },
+    {
+      "pid": "P3497",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.564,
+      "inserted": 500
+    },
+    {
+      "pid": "P6639",
+      "returned_bindings": 0,
+      "valid_qid_edges": 0,
+      "seconds": 0.316,
+      "inserted": 0
+    },
+    {
+      "pid": "P4036",
+      "returned_bindings": 0,
+      "valid_qid_edges": 0,
+      "seconds": 0.332,
+      "inserted": 0
+    },
+    {
+      "pid": "P2279",
+      "returned_bindings": 44,
+      "valid_qid_edges": 44,
+      "seconds": 0.306,
+      "inserted": 44
+    },
+    {
+      "pid": "P3028",
+      "returned_bindings": 11,
+      "valid_qid_edges": 11,
+      "seconds": 0.355,
+      "inserted": 11
+    },
+    {
+      "pid": "P5804",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.579,
+      "inserted": 500
+    },
+    {
+      "pid": "P3999",
+      "returned_bindings": 0,
+      "valid_qid_edges": 0,
+      "seconds": 1.619,
+      "inserted": 0
+    },
+    {
+      "pid": "P1995",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.568,
+      "inserted": 500
+    },
+    {
+      "pid": "P816",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.568,
+      "inserted": 500
+    },
+    {
+      "pid": "P550",
+      "returned_bindings": 92,
+      "valid_qid_edges": 92,
+      "seconds": 0.384,
+      "inserted": 92
+    },
+    {
+      "pid": "P6977",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.542,
+      "inserted": 500
+    },
+    {
+      "pid": "P10308",
+      "returned_bindings": 432,
+      "valid_qid_edges": 432,
+      "seconds": 0.756,
+      "inserted": 432
+    },
+    {
+      "pid": "P11260",
+      "returned_bindings": 1,
+      "valid_qid_edges": 1,
+      "seconds": 0.308,
+      "inserted": 1
+    },
+    {
+      "pid": "P5425",
+      "returned_bindings": 0,
+      "valid_qid_edges": 0,
+      "seconds": 0.845,
+      "inserted": 0
+    },
+    {
+      "pid": "P922",
+      "returned_bindings": 2,
+      "valid_qid_edges": 2,
+      "seconds": 0.317,
+      "inserted": 2
+    },
+    {
+      "pid": "P5426",
+      "returned_bindings": 1,
+      "valid_qid_edges": 1,
+      "seconds": 0.382,
+      "inserted": 1
+    },
+    {
+      "pid": "P13171",
+      "returned_bindings": 0,
+      "valid_qid_edges": 0,
+      "seconds": 0.362,
+      "inserted": 0
+    },
+    {
+      "pid": "P6272",
+      "returned_bindings": 0,
+      "valid_qid_edges": 0,
+      "seconds": 0.334,
+      "inserted": 0
+    },
+    {
+      "pid": "P726",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.555,
+      "inserted": 500
+    },
+    {
+      "pid": "P13574",
+      "returned_bindings": 128,
+      "valid_qid_edges": 128,
+      "seconds": 0.397,
+      "inserted": 128
+    },
+    {
+      "pid": "P2286",
+      "returned_bindings": 395,
+      "valid_qid_edges": 395,
+      "seconds": 0.674,
+      "inserted": 395
+    },
+    {
+      "pid": "P2989",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.575,
+      "inserted": 500
+    },
+    {
+      "pid": "P10627",
+      "returned_bindings": 3,
+      "valid_qid_edges": 3,
+      "seconds": 0.32,
+      "inserted": 3
+    },
+    {
+      "pid": "P118",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.557,
+      "inserted": 500
+    },
+    {
+      "pid": "P2831",
+      "returned_bindings": 30,
+      "valid_qid_edges": 30,
+      "seconds": 0.314,
+      "inserted": 30
+    },
+    {
+      "pid": "P2869",
+      "returned_bindings": 196,
+      "valid_qid_edges": 196,
+      "seconds": 0.469,
+      "inserted": 196
+    },
+    {
+      "pid": "P9353",
+      "returned_bindings": 26,
+      "valid_qid_edges": 26,
+      "seconds": 0.297,
+      "inserted": 26
+    },
+    {
+      "pid": "P169",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.722,
+      "inserted": 500
+    },
+    {
+      "pid": "P1037",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.559,
+      "inserted": 500
+    },
+    {
+      "pid": "P184",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.623,
+      "inserted": 500
+    },
+    {
+      "pid": "P8738",
+      "returned_bindings": 42,
+      "valid_qid_edges": 42,
+      "seconds": 0.312,
+      "inserted": 42
+    },
+    {
+      "pid": "P822",
+      "returned_bindings": 500,
+      "valid_qid_edges": 500,
+      "seconds": 0.642,
+      "inserted": 500
+    },
+    {
+      "pid": "P1912",
+      "returned_bindings": 13,
+      "valid_qid_edges": 13,
+      "seconds": 0.291,
+      "inserted": 13
+    }
+  ],
+  "totals": {
+    "edges_collected": 12916,
+    "edges_upserted": 12916,
+    "failed_pids": 2
+  },
+  "failures": [
+    {
+      "pid": "P577",
+      "error": "WDQS request failed after retries. Last error: HTTPSConnectionPool(host='query.wikidata.org', port=443): Read timed out. (read timeout=55)"
+    },
+    {
+      "pid": "P570",
+      "error": "WDQS request failed after retries. Last error: HTTPSConnectionPool(host='query.wikidata.org', port=443): Read timed out. (read timeout=55)"
+    }
+  ],
+  "relation_histogram": {
+    "P2098": 500,
+    "P4000": 500,
+    "P277": 500,
+    "P530": 500,
+    "P485": 500,
+    "P301": 500,
+    "P86": 500,
+    "P9086": 500,
+    "P1283": 500,
+    "P5514": 500,
+    "P40": 500,
+    "P3497": 500,
+    "P5804": 500,
+    "P1995": 500,
+    "P816": 500,
+    "P6977": 500,
+    "P726": 500,
+    "P2989": 500,
+    "P118": 500,
+    "P169": 500,
+    "P1037": 500,
+    "P184": 500,
+    "P822": 500,
+    "P10308": 432,
+    "P2286": 395,
+    "P2869": 196,
+    "P13574": 128,
+    "P550": 92,
+    "P2279": 44,
+    "P8738": 42,
+    "P2831": 30,
+    "P9353": 26,
+    "P1912": 13,
+    "P3028": 11,
+    "P10627": 3,
+    "P922": 2,
+    "P11260": 1,
+    "P5426": 1
+  }
+}
