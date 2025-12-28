@@ -63,7 +63,7 @@ def create_search_index_for_entities(db, collection_name='entity_aliases', embed
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Create collections and indexes for the dynamic triplets database')
-    parser.add_argument('--mongo_uri', type=str, default="mongodb://localhost:27018/?directConnection=true")
+    parser.add_argument('--mongo_uri', type=str, default="mongodb://localhost:63819/?directConnection=true")
     parser.add_argument('--db_name', type=str, default="triplets_db")
     parser.add_argument('--entity_aliases_collection', type=str, default="entity_aliases",
                         help='Collection name for entity aliases')

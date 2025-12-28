@@ -1,0 +1,5 @@
+subject,relation,object,subject_type,object_type
+Q42,P31,Q5,Q5,Q5
+Q42,P19,Q64,Q5,Q515
+Q64,P31,Q515,Q515,Q515
+Q64,P17,Q183,Q515,Q6256

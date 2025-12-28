@@ -12,7 +12,7 @@ import argparse
 import logging
 import os 
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 
 # Configure logging
@@ -268,7 +268,7 @@ if __name__ == "__main__":
     
     parser.add_argument('--mappings_dir', type=str, default="utils/ontology_mappings/",
                         help='Directory containing ontology mapping files')
-    parser.add_argument('--mongo_uri', type=str, default="mongodb://localhost:27018/?directConnection=true",
+    parser.add_argument('--mongo_uri', type=str, default="mongodb://localhost:63819/?directConnection=true",
                         help='MongoDB connection URI')
     parser.add_argument('--database', type=str, default="wikidata_ontology",
                         help='MongoDB database name')

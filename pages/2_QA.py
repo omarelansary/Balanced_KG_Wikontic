@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv, find_dotenv
 # from neo4j import GraphDatabase
 from pymongo import MongoClient
-from utils.structured_dynamic_index_utils_with_db import Aligner
+from utils.structured_aligner import Aligner
 from utils.openai_utils import LLMTripletExtractor
 from utils.structured_inference_with_db import StructuredInferenceWithDB
 import uuid

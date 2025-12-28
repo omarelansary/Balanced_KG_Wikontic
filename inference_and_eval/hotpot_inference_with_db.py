@@ -27,7 +27,7 @@ def get_dataset(dataset_path):
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--mongo_uri", type=str, default="mongodb://localhost:27018/?directConnection=true")
+    parser.add_argument("--mongo_uri", type=str, default="mongodb://localhost:63819/?directConnection=true")
     parser.add_argument("--ontology_db_name", type=str, default="wikidata_ontology")
     parser.add_argument("--triplets_db_name", type=str, default="triplets_db")
     parser.add_argument("--model_name", type=str, default="gpt-4o-mini")
