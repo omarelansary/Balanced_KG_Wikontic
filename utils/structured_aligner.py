@@ -50,7 +50,7 @@ class Aligner:
         # self.tokenizer = AutoTokenizer.from_pretrained('facebook/contriever', token=os.getenv("HF_KEY"))
         self.tokenizer = AutoTokenizer.from_pretrained('facebook/contriever')
         # self.model = AutoModel.from_pretrained('facebook/contriever', token=os.getenv("HF_KEY")).to(self.device)
-        self.model = AutoModel.from_pretrained('facebook/contriever').to(self.device)
+        self.model = AutoModel.from_pretrained("facebook/contriever").to(self.device)
 
 
     def get_embedding(self, text):
